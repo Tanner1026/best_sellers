@@ -7,7 +7,7 @@ import time
 
 #establish variables for your Amazon Account including Username and Password
 URL = 'https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2F%3Fref_%3Dnav_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0'
-email = "YOUR EMAIL/PHONE NUMBER HERE"
+email = "YOUR EMAIL/PHONE # HERE"
 password = 'YOUR PASSWORD HERE'
 today = date.today()
 # Creates class for handling Database functions
@@ -98,3 +98,15 @@ for item in best_sellers:
             db.execute(name, price, href, today)
         else:
             print(f'Item name is: {name}\nThe price is: {price}\nThe link is: {href}\n\n')
+
+def get_result():
+    choice = input("Would you like to view a listing item? (y/n) ")
+    if choice == 'y':
+        return True
+    else:
+        return False
+    
+while get_result():
+    item_id = int(input('What is the ID number of the item you would like to view? \n'))
+    result = db.get_listing_by_id(item_id)
+    print(f'Name: {result[1]}\nPrice: {result[2]}\nLink: {result[3]}\n\n')
