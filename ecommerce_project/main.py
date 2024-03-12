@@ -107,6 +107,6 @@ def get_result():
         return False
     
 while get_result():
-    item_id = int(input('What is the ID number of the item you would like to view? \n'))
+    item_id = int(input('What is the ID number of the item you would like to view? '))
     result = db.get_listing_by_id(item_id)
     print(f'Name: {result[1]}\nPrice: {result[2]}\nLink: {result[3]}\n\n')
